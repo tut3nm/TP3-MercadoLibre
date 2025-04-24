@@ -6,7 +6,6 @@ function App() {
   const [producto, setProducto] = useState(0)
 
   return (
-<<<<<<< HEAD
     <>
       <h1>¿Que querés buscar?</h1>
       <div className='search-bar'>
@@ -21,10 +20,6 @@ function App() {
           <Boton texto={textoEnviado}/>
       </div>
     </>
-    
-=======
-    <h1>Mercado Libre</h1>
->>>>>>> 51c8a58099e008aa65308711897c7d6330601d6e
   )
 }
 
