@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import Mostrar from './Mostrar';
+import Mostrar from './Mostrar.jsx';
 import '../estilos/Buscador.css';
 
 function Buscador() {
