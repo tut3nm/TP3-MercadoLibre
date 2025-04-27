@@ -1,18 +1,23 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import '../estilos/Buscador.css';
+import Mostrar from './Mostrar.jsx'; // Antes: Resultados
 
 function Buscador() {
   const [producto, setProducto] = useState('');
+  const [resultados, setResultados] = useState([]);
 
   const manejarBusqueda = async () => {
     if (producto.trim() === '') return;
 
     try {
-      const respuesta = await axios.get(`https://api.mercadolibre.com/sites/MLA/search?q=${encodeURIComponent(producto)}&limit=15`);
-      console.log(respuesta.data.results); // Acá vas a recibir los 15 resultados
+      const respuesta = await axios.get(
+        `https://api.mercadolibre.com/sites/MLA/search?q=${encodeURIComponent(producto)}&limit=15`
+      );
+      setResultados(respuesta.data.results);
     } catch (error) {
       console.error('Error al buscar productos:', error);
+      setResultados([]);
     }
   };
 
@@ -31,6 +36,9 @@ function Buscador() {
           Buscar
         </div>
       </div>
+
+      {/* pasamos los resultados al componente Mostrar */}
+      <Mostrar productos={resultados} />
     </div>
   );
 }
