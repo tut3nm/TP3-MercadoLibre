@@ -1,27 +1,13 @@
-import { useState } from 'react'
+import React from 'react';
+import './App.css';
+import Buscador from './componentes/Buscador';
 
-import './App.css'
-import boton from './componentes/boton'
 function App() {
-  const [producto, setProducto] = useState(0)
-
   return (
-    <>
-      <h1>¿Que querés buscar?</h1>
-      <div className='search-bar'>
-        <input
-          type="text"
-          value={producto}
-          onChange={(e) => setProducto(e.target.value)}
-          placeholder="Ingresar producto..."/>
-
-          <button onClick={manejarClick}>Buscar</button>
-          {boton}
-          <Boton texto={textoEnviado}/>
-          
-      </div>
-    </>
-  )
+    <div className="App">
+      <Buscador />
+    </div>
+  );
 }
 
-export default App
+export default App;
