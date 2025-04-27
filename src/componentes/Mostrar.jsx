@@ -2,21 +2,16 @@ import React from 'react';
 import '../estilos/Mostrar.css';
 
 function Mostrar({ productos }) {
-  if (productos.length === 0) {
-    return null; // no mostramos nada si no hay productos
-  }
-
   return (
-    <div className="contenedor-mostrar">
-      {productos.map((item) => (
-        <div key={item.id} className="tarjeta-producto">
-          <img
-            src={item.thumbnail}
-            alt={item.title}
-            className="imagen-producto"
-          />
-          <h3 className="titulo-producto">{item.title}</h3>
-          <p className="precio-producto">${item.price}</p>
+    <div className="lista-productos">
+      {productos.map((producto) => (
+        <div key={producto.id} className="tarjeta-producto">
+          <img src={producto.thumbnail} alt={producto.title} className="imagen-producto" />
+          <div className="info-producto">
+            <h3 className="titulo-producto">{producto.title}</h3>
+            <p className="vendedor-producto">Por {producto.seller?.nickname || "Vendedor desconocido"}</p>
+            <p className="precio-producto">${producto.price.toLocaleString()}</p>
+          </div>
         </div>
       ))}
     </div>
