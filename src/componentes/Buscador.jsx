@@ -9,7 +9,7 @@ function Buscador() {
   const [accessToken, setAccessToken] = useState(null); // Estado para almacenar el access token
   const client_id = 1576751186890669;
   const client_secret = 'XAtD0yWKHO9Fwof7PP6jk2BEpGJQLXz9';
-  const redirect_uri = 'https://buscadormelidds.netlify.app/';
+  const redirect_url = 'https://eosi26fl4bqgtm.m.pipedream.net';
 
   useEffect(() => {
     const obtenerAccessToken = async () => {
@@ -25,7 +25,7 @@ function Buscador() {
               client_id: client_id,
               client_secret: client_secret,
               code: code,
-              redirect_uri: redirect_uri,
+              redirect_url: redirect_url,
             }).toString(),
             {
               headers: {
@@ -39,7 +39,7 @@ function Buscador() {
           window.history.replaceState({}, document.title, window.location.pathname);
         } else {
           // Si no hay código, redirigir para autenticar
-          const authUrl = `https://auth.mercadolibre.com.ar/authorize?response_type=code&client_id=${client_id}&redirect_uri=${encodeURIComponent(redirect_uri)}`;
+          const authUrl = `https://auth.mercadolibre.com.ar/authorize?response_type=code&client_id=${client_id}&redirect_uri=${encodeURIComponent(redirect_url)}`;
           window.location.href = authUrl;
         }
       } catch (error) {
@@ -51,7 +51,7 @@ function Buscador() {
     };
 
     obtenerAccessToken();
-  }, [client_id, client_secret, redirect_uri]); // Dependencias para que se ejecute al montar y si cambian las credenciales
+  }, [client_id, client_secret, redirect_url]); // Dependencias para que se ejecute al montar y si cambian las credenciales
 
   const manejarBusqueda = async () => {
     if (producto.trim() === '') return;
