@@ -10,7 +10,8 @@ function Mostrar({ productos }) {
           <div className="info-producto">
             <h3 className="titulo-producto">{producto.title}</h3>
             <p className="vendedor-producto">Por {producto.seller?.nickname || "Vendedor desconocido"}</p>
-            <p className="precio-producto">${producto.price.toLocaleString()}</p>
+            <p className="precio-producto">
+            {producto.price ? `$${producto.price.toLocaleString()}` : "Precio no disponible"}</p>
           </div>
         </div>
       ))}
