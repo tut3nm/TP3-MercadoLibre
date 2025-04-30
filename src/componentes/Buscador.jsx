@@ -32,13 +32,13 @@ function Buscador() {
             type="text"
             className="input-buscador"
             placeholder="Ingrese su Artista..."
-            value={producto}
+            value={artista}
             onChange={(e) => setArtista(e.target.value)}
           />
           <div className="boton-buscar" onClick={manejarBusqueda}>
             Buscar
-          </div>
-          <button className='boton-selección' onClick={seleccionarTipo}>Seleccione...</button>
+          </div> 
+          
         </div>
       </div>
 
@@ -49,4 +49,4 @@ function Buscador() {
 
 export default Buscador;
 
-
+//<button className='boton-selección' onClick={seleccionarTipo}>Seleccione...</button>
