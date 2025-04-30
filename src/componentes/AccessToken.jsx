@@ -13,7 +13,7 @@ const TokenSpotify = ({ alRecibirToken }) => {
       try {
         const respuesta = await axios.post(
           "https://accounts.spotify.com/api/token",
-          new URLSearchParams({ grant_type: "client_credentials" }),
+          new URLSearchParams({grant_type: "client_credentials"}),
           {
             headers: {
               "Content-Type": "application/x-www-form-urlencoded",

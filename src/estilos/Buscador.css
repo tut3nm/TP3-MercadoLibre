@@ -1,5 +1,5 @@
 .contenedor-buscador {
-    background-color: #ffe600;
+    background-color: #1ed75f44;
     padding: 20px 30px;
     border-radius: 40px;
     border: 3px solid #000000;
@@ -40,7 +40,7 @@
     padding: 10px 20px;
     border: 2px solid black;
     border-radius: 40px;
-    background-color: #ffe600;
+    background-color: #169944;
     color: black;
     font-weight: bold;
     cursor: pointer;
@@ -49,6 +49,9 @@
   }
   
   .boton-buscar:hover {
-    background-color: #ffd000;
+    background-color: #15863c;
   }
-  
+  img{
+    max-width: 50px;
+    margin-bottom: 35px;
+  }

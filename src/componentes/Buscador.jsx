@@ -27,6 +27,8 @@ function Buscador() {
     <div>
       <div className="contenedor-buscador">
         <h2 className="titulo-buscador">Buscador de música</h2>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/1/19/Spotify_logo_without_text.svg" 
+        alt="spotify-logo" />
         <div className="contenedor-input-boton">
           <input
             type="text"
