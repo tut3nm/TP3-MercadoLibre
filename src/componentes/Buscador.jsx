@@ -10,7 +10,7 @@ function Buscador() {
 
 
   const manejarBusqueda = async () => {
-    if (producto.trim() === '') return;
+    if (artista.trim() === '') return;
 
     try {
       const respuesta = await axios.get(`https://api.spotify.com/v1/search?q=${encodeURIComponent(artista)}&type=artist`, {

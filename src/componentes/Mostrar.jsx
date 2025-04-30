@@ -1,17 +1,24 @@
 import React from 'react';
 import '../estilos/Mostrar.css';
 
-function Mostrar({ productos }) {
+function Mostrar({ artistas }) {
   return (
-    <div className="lista-productos">
-      {productos.map((producto) => (
-        <div key={producto.id} className="tarjeta-producto">
-          <img src={producto.thumbnail} alt={producto.title} className="imagen-producto" />
-          <div className="info-producto">
-            <h3 className="titulo-producto">{producto.name}</h3>
-            <p className="vendedor-producto">Por {producto.seller?.nickname || "Vendedor desconocido"}</p>
-            <p className="precio-producto">
-            {producto.price ? `$${producto.price.toLocaleString()}` : "Precio no disponible"}</p>
+    <div className="lista-artistas">
+      {artistas.map((artista) => (
+        <div key={artista.id} className="tarjeta-artista">
+          <img
+            src={artista.images[0]?.url}
+            alt={artista.name}
+            className="imagen-artista"
+          />
+          <div className="info-artista">
+            <h3 className="nombre-artista">{artista.name}</h3>
+            {artista.genres.length > 0 && (
+              <p className="genero-artista">Géneros: {artista.genres.join(', ')}</p>
+            )}
+            <p className="seguidores-artista">
+              Seguidores: {artista.followers.total.toLocaleString()}
+            </p>
           </div>
         </div>
       ))}
