@@ -8,7 +8,7 @@ function Mostrar({ productos }) {
         <div key={producto.id} className="tarjeta-producto">
           <img src={producto.thumbnail} alt={producto.title} className="imagen-producto" />
           <div className="info-producto">
-            <h3 className="titulo-producto">{producto.title}</h3>
+            <h3 className="titulo-producto">{producto.name}</h3>
             <p className="vendedor-producto">Por {producto.seller?.nickname || "Vendedor desconocido"}</p>
             <p className="precio-producto">
             {producto.price ? `$${producto.price.toLocaleString()}` : "Precio no disponible"}</p>
