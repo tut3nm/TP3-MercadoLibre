@@ -1,25 +1,24 @@
-import React, { useState } from 'react';
+import React from 'react';
 import axios from 'axios';
 import Mostrar from './Mostrar';
 import '../estilos/Buscador.css';
 
-function Buscador({ token }) {
-  const [artista, setArtista] = useState('');
-  const [resultados, setResultados] = useState([]);
-
+function Buscador({
+  token,
+  artista,
+  setArtista,
+  resultados,
+  setResultados,
+  onSelectArtist
+}) {
   const manejarBusqueda = async () => {
-    if (artista.trim() === '') return;
-
+    if (!artista.trim()) return;
     try {
-      const respuesta = await axios.get(
+      const { data } = await axios.get(
         `https://api.spotify.com/v1/search?q=${encodeURIComponent(artista)}&type=artist`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
+        { headers: { Authorization: `Bearer ${token}` } }
       );
-      setResultados(respuesta.data.artists.items); // CORREGIDO
+      setResultados(data.artists.items);
     } catch (error) {
       console.error('Error al buscar artistas:', error);
     }
@@ -47,11 +46,15 @@ function Buscador({ token }) {
         </div>
       </div>
 
-      {resultados.length > 0 && <Mostrar artistas={resultados} />}
+      {resultados.length > 0 && (
+        <Mostrar
+          artistas={resultados}
+          onSelectArtist={onSelectArtist}
+          onBackMostrar={() => setResultados([])}
+        />
+      )}
     </div>
   );
 }
 
 export default Buscador;
-
-//<button className='boton-selección' onClick={seleccionarTipo}>Seleccione...</button>

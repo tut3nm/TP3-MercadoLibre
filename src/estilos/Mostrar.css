@@ -1,42 +1,85 @@
-.lista-artistas {
-  margin: 40px auto;
+
+.contenedor-mostrar {
   width: 80%;
+  margin: 20px auto;
+  padding: 100px 10px 10px;
+  box-sizing: border-box;
+}
+
+
+.boton-volver-buscar {
+  position: sticky;
+  top: 0;
+  margin-bottom: 20px;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: bold;
+  background-color: #1db954;
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  z-index: 10;
+}
+.boton-volver-buscar:hover {
+  background-color: #17a94a;
+}
+
+
+.lista-artistas {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
   justify-content: center;
+  margin-top: 20px;
 }
+
 
 .tarjeta-artista {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  display: grid;
+  grid-template-rows: 1fr auto;  
+  width: 220px;
+  height: 220px;
   border: 1px solid #ccc;
   border-radius: 15px;
-  padding: 15px;
+  overflow: hidden;
   background-color: #f9f9f9;
-  width: 200px;
+  cursor: pointer;
+  transition: transform 0.1s ease;
+}
+.tarjeta-artista:hover {
+  transform: translateY(-4px);
 }
 
+
+.imagen-container {
+  grid-row: 1 / 2;
+  width: 100%;
+  height: 100%;
+}
 .imagen-artista {
   width: 100%;
-  height: 200px;
+  height: 100%;
   object-fit: cover;
-  border-radius: 10px;
 }
 
+
 .info-artista {
-  margin-top: 10px;
+  grid-row: 2 / 3;
+  padding: 8px;
+  background: rgba(255,255,255,0.9);
   text-align: center;
 }
 
-.nombre-artista {
-  font-size: 18px;
-  font-weight: bold;
-}
 
+.nombre-artista {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 4px 0;
+}
 .genero-artista,
 .seguidores-artista {
-  font-size: 14px;
+  font-size: 12px;
   color: #666;
+  margin: 2px 0;
 }
