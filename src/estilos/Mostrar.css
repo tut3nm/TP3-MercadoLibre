@@ -37,10 +37,10 @@
 
 .tarjeta-artista {
   display: grid;
-  grid-template-rows: 1fr auto;  
+  grid-template-rows: 5fr 1fr;  
   width: 220px;
-  height: 220px;
-  border: 1px solid #ccc;
+  height: 320px;
+  border: 3px solid #17a94a;
   border-radius: 15px;
   overflow: hidden;
   background-color: #f9f9f9;
@@ -49,25 +49,26 @@
 }
 .tarjeta-artista:hover {
   transform: translateY(-4px);
+  color: #14853c;
 }
 
 
 .imagen-container {
-  grid-row: 1 / 2;
-  width: 100%;
-  height: 100%;
+  max-width: 220px;
+  background-color: rgba(30, 215,96,0.2);
+  align-content: center;
 }
 .imagen-artista {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  max-width: 200px;
+  max-height: 200px;
+  display: block;
+  margin: auto;
 }
 
 
 .info-artista {
-  grid-row: 2 / 3;
   padding: 8px;
-  background: rgba(255,255,255,0.9);
+  background-color:rgba(30, 215,96,0.2);
   text-align: center;
 }
 
