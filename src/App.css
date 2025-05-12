@@ -3,6 +3,6 @@
   justify-content: center;
   align-items: center;
   width: auto;
-  height: 100%;
+  min-height: 1080px;
   background:linear-gradient(60deg, aquamarine, #fff)  ;
 }
