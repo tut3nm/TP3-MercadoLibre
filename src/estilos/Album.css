@@ -1,6 +1,6 @@
 .album-page {
-    max-width: 800px;
-    margin: 0 auto;
+    max-width: 1000px;
+    margin: 0 20%;
     padding: 20px;
   }
   .boton-volver {
@@ -18,8 +18,8 @@
     margin-bottom: 20px;
   }
   .album-imagen {
-    width: 150px;
-    height: 150px;
+    max-width: 200px;
+    max-height: 200px;
     object-fit: cover;
     border-radius: 16px;
   }
@@ -39,11 +39,27 @@
   .pista-item {
     display: flex;
     justify-content: space-between;
-    padding: 8px 0;
-    border-bottom: 1px solid #eee;
+    padding: 12px 14px;
+    border: 1px solid #242424;
+    border-radius: 20px;
+    margin: 10px 0;
+    width: 500px;
   }
-  .pista-nombre { flex: 2; }
-  .pista-duracion, .pista-popularidad { flex: 1; text-align: right; }
+  .pista-nombre { 
+    flex: 2; 
+    text-align: right; 
+    color: black;
+    text-decoration: none;
+  }
+  .pista-nombre:hover { 
+    flex: 2; 
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+    cursor: pointer;
+
+  }
+  .pista-duracion, .pista-popularidad { flex: 1; text-align: center;}
   .cargando, .mensaje-error {
     text-align: center;
     color: #666;

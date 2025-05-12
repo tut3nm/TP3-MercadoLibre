@@ -65,7 +65,9 @@ function Album({ token, idAlbum, onBack }) {
       <ul className="lista-pistas">
         {pistas.map(p => (
           <li key={p.id} className="pista-item">
-            <span className="pista-nombre">{p.name}</span>
+            <a href={p.external_urls.spotify}>
+              <span className="pista-nombre">{p.name}</span>
+            </a>
             <span className="pista-duracion">
               {Math.floor(p.duration_ms/60000)}:
               {String(Math.floor((p.duration_ms % 60000)/1000)).padStart(2,'0')}
