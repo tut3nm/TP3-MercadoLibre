@@ -1,0 +1,51 @@
+.album-page {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  .boton-volver {
+    margin-bottom: 16px;
+    padding: 6px 12px;
+    border-radius: 20px;
+    background: #1db954;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+  }
+  .detalle-album {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+  .album-imagen {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 16px;
+  }
+  .album-info h1 {
+    margin: 0;
+    font-size: 24px;
+  }
+  .album-info h2 {
+    margin: 4px 0;
+    font-size: 18px;
+    color: #666;
+  }
+  .lista-pistas {
+    list-style: none;
+    padding: 0;
+  }
+  .pista-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px solid #eee;
+  }
+  .pista-nombre { flex: 2; }
+  .pista-duracion, .pista-popularidad { flex: 1; text-align: right; }
+  .cargando, .mensaje-error {
+    text-align: center;
+    color: #666;
+  }
+  

@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import Album from './Album';  
 import '../estilos/Artista.css';
 
 function Artista({ token, id, onBack }) {
   const [artista, setArtista] = useState(null);
   const [albumes, setAlbumes] = useState([]);
   const [error, setError] = useState(null);
+  const [albumSeleccionado, setAlbumSeleccionado] = useState(null);
+
 
   useEffect(() => {
     if (!token) return;
@@ -51,6 +54,16 @@ function Artista({ token, id, onBack }) {
   if (!artista) {
     return <p className="cargando">Cargando artista…</p>;
   }
+  if (albumSeleccionado) {
+    return (
+      <Album
+        token={token}
+        idAlbum={albumSeleccionado}
+        // onBack limpia el estado para volver a la vista de artista
+        onBack={() => setAlbumSeleccionado(null)}
+      />
+    );
+  }
 
   return (
     <div className="artista-page">
@@ -92,12 +105,17 @@ function Artista({ token, id, onBack }) {
       </div>
 
       <h2 className="titulo-albumes">Álbumes</h2>
-
       <div className="albumes-scroll">
         {albumes.map(alb => {
           const año = alb.release_date.split('-')[0];
           return (
-            <div key={alb.id} className="tarjeta-album">
+            <div
+              key={alb.id}
+              className="tarjeta-album"
+              style={{ cursor: 'pointer' }}
+              // Al click, guardo el id en el estado local
+              onClick={() => setAlbumSeleccionado(alb.id)}
+            >
               {alb.images[0] && (
                 <img
                   src={alb.images[0].url}
