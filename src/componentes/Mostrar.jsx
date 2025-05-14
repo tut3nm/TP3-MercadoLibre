@@ -2,6 +2,14 @@ import React from 'react';
 import '../estilos/Mostrar.css';
 
 function Mostrar({ artistas, onSelectArtist, onBackMostrar }) {
+  const handleAgregarFavorito = () => {
+    const nuevoFavorito = {
+      tipo: 'artista',
+      nombre: artista.name,
+      url: artista.external_urls.spotify,
+    };
+    agregarFavorito(nuevoFavorito);
+  };
   return (
     <div className="contenedor-mostrar">
       <button
@@ -32,10 +40,12 @@ function Mostrar({ artistas, onSelectArtist, onBackMostrar }) {
                 <p className="genero-artista">
                   Géneros: {artista.genres.join(', ')}
                 </p>
+                
               )}
               <p className="seguidores-artista">
                 Seguidores: {artista.followers.total.toLocaleString()}
               </p>
+              <button onClick={handleAgregarFavorito}>Agregar a Favoritos</button>
             </div>
           </div>
         ))}

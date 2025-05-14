@@ -8,7 +8,14 @@ function Artista({ token, id, onBack }) {
   const [albumes, setAlbumes] = useState([]);
   const [error, setError] = useState(null);
   const [albumSeleccionado, setAlbumSeleccionado] = useState(null);
-
+  const handleAgregarFavorito = () => {
+    const nuevoFavorito = {
+      tipo: 'artista',
+      nombre: artista.name,
+      url: artista.external_urls.spotify,
+    };
+    agregarFavorito(nuevoFavorito);
+  };
 
   useEffect(() => {
     if (!token) return;
@@ -102,6 +109,7 @@ function Artista({ token, id, onBack }) {
         >
           Ver en Spotify
         </a>
+        <button onClick={handleAgregarFavorito}>Agregar a Favoritos</button>
       </div>
 
       <h2 className="titulo-albumes">Álbumes</h2>
@@ -116,6 +124,7 @@ function Artista({ token, id, onBack }) {
               // Al click, guardo el id en el estado local
               onClick={() => setAlbumSeleccionado(alb.id)}
             >
+              <button onClick={handleAgregarFavorito}>Agregar a Favoritos</button>
               {alb.images[0] && (
                 <img
                   src={alb.images[0].url}

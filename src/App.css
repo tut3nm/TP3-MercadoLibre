@@ -6,3 +6,13 @@
   min-height: 1080px;
   background:linear-gradient(60deg, aquamarine, #fff)  ;
 }
+
+.busqueda-y-favoritos {
+  display: flex;
+  gap: 20px;
+}
+
+/* Ajustá el ancho a tu gusto */
+.busqueda-y-favoritos > .favoritos-container {
+  width: 300px;
+}

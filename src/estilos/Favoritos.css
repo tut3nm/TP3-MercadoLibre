@@ -1,0 +1,30 @@
+.favoritos-container {
+  width: 300px;
+  padding: 10px;
+  background-color: #f9f9f9;
+  border-left: 1px solid #ccc;
+}
+
+.favoritos-lista {
+  list-style: none;
+  padding: 0;
+}
+
+.favorito-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.favorito-item a {
+  text-decoration: none;
+  color: #333;
+}
+
+.favorito-item button {
+  background-color: transparent;
+  border: none;
+  color: red;
+  cursor: pointer;
+}

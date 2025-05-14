@@ -6,7 +6,15 @@ function Album({ token, idAlbum, onBack }) {
   const [detalle, setDetalle] = useState(null);
   const [pistas, setPistas] = useState([]);
   const [error, setError] = useState(null);
-
+  const handleAgregarFavorito = () => {
+    const nuevoFavorito = {
+      tipo: 'artista',
+      nombre: artista.name,
+      url: artista.external_urls.spotify,
+    };
+    agregarFavorito(nuevoFavorito);
+  };
+  
   useEffect(() => {
     if (!token || !idAlbum) return;
 
@@ -75,6 +83,7 @@ function Album({ token, idAlbum, onBack }) {
             <span className="pista-popularidad">
               Popularidad: {p.popularity ?? '-'}
             </span>
+            <button onClick={handleAgregarFavorito}>Agregar a Favoritos</button>
           </li>
         ))}
       </ul>
