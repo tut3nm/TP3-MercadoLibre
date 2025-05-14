@@ -1,15 +1,7 @@
 import React from 'react';
 import '../estilos/Mostrar.css';
 
-function Mostrar({ artistas, onSelectArtist, onBackMostrar }) {
-  const handleAgregarFavorito = () => {
-    const nuevoFavorito = {
-      tipo: 'artista',
-      nombre: artista.name,
-      url: artista.external_urls.spotify,
-    };
-    agregarFavorito(nuevoFavorito);
-  };
+function Mostrar({ artistas, onSelectArtist, onBackMostrar, agregarFavorito }) {
   return (
     <div className="contenedor-mostrar">
       <button
@@ -18,7 +10,6 @@ function Mostrar({ artistas, onSelectArtist, onBackMostrar }) {
       >
         ← Volver a buscar
       </button>
-
       <div className="lista-artistas">
         {artistas.map((artista) => (
           <div
@@ -33,19 +24,26 @@ function Mostrar({ artistas, onSelectArtist, onBackMostrar }) {
                 className="imagen-artista"
               />
             </div>
-
             <div className="info-artista">
               <h3 className="nombre-artista">{artista.name}</h3>
               {artista.genres.length > 0 && (
                 <p className="genero-artista">
                   Géneros: {artista.genres.join(', ')}
                 </p>
-                
               )}
               <p className="seguidores-artista">
                 Seguidores: {artista.followers.total.toLocaleString()}
               </p>
-              <button onClick={handleAgregarFavorito}>Agregar a Favoritos</button>
+              <button
+                className="boton-favorito"
+                onClick={(e) => { e.stopPropagation(); agregarFavorito({
+                  tipo: 'Artista',
+                  nombre: artista.name,
+                  url: artista.external_urls.spotify
+                }); }}
+              >
+                + Favoritos
+              </button>
             </div>
           </div>
         ))}
@@ -55,3 +53,4 @@ function Mostrar({ artistas, onSelectArtist, onBackMostrar }) {
 }
 
 export default Mostrar;
+
