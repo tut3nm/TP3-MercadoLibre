@@ -1,114 +1,152 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import BotonFavorito from './BotonFavorito';
-import Favoritos from './Favoritos';
+import Album from './Album';
 import '../estilos/Artista.css';
 
-export default function Artista({
-  token,
-  id,
-  onBack,
-  agregarFavorito,
-  favoritos,
-  eliminarFavorito
-}) {
+function Artista({ token, id, onBack, onAgregarFavorito }) {
   const [artista, setArtista] = useState(null);
   const [albumes, setAlbumes] = useState([]);
   const [error, setError] = useState(null);
+  const [albumSeleccionado, setAlbumSeleccionado] = useState(null);
 
   useEffect(() => {
     if (!token) return;
-    (async () => {
+
+    const fetchArtistaYAlbumes = async () => {
       try {
-        const [artRes, albRes] = await Promise.all([
-          axios.get(`https://api.spotify.com/v1/artists/${id}`, {
-            headers: { Authorization: `Bearer ${token}` }
-          }),
-          axios.get(`https://api.spotify.com/v1/artists/${id}/albums`, {
+        const { data: artistaData } = await axios.get(
+          `https://api.spotify.com/v1/artists/${id}`,
+          { headers: { Authorization: `Bearer ${token}` } }
+        );
+        setArtista(artistaData);
+
+        const { data: albData } = await axios.get(
+          `https://api.spotify.com/v1/artists/${id}/albums`,
+          {
             headers: { Authorization: `Bearer ${token}` },
-            params: { include_groups: 'album,single', market: 'US', limit: 50 }
-          })
-        ]);
-        setArtista(artRes.data);
-        setAlbumes(albRes.data.items);
+            params: {
+              include_groups: 'album,single',
+              market: 'US',
+              limit: 50,
+            },
+          }
+        );
+        setAlbumes(albData.items);
       } catch (e) {
         console.error(e);
-        setError('No se pudieron cargar los datos.');
+        setError('No se pudieron cargar los datos del artista.');
       }
-    })();
+    };
+
+    fetchArtistaYAlbumes();
   }, [id, token]);
 
   if (error) {
     return (
       <div className="artista-page">
-        <Favoritos favoritos={favoritos} onRemove={eliminarFavorito} />
         <button className="boton-volver" onClick={onBack}>← Volver</button>
         <p className="mensaje-error">{error}</p>
       </div>
     );
   }
+
   if (!artista) {
+    return <p className="cargando">Cargando artista…</p>;
+  }
+
+  if (albumSeleccionado) {
     return (
-      <div className="artista-page">
-        <Favoritos favoritos={favoritos} onRemove={eliminarFavorito} />
-        <p className="cargando">Cargando artista…</p>
-      </div>
+      <Album
+        token={token}
+        idAlbum={albumSeleccionado}
+        onBack={() => setAlbumSeleccionado(null)}
+        onAgregarFavorito={onAgregarFavorito}
+      />
     );
   }
 
   return (
     <div className="artista-page">
-      <Favoritos favoritos={favoritos} onRemove={eliminarFavorito} />
       <button className="boton-volver" onClick={onBack}>
         ← Volver a resultados
       </button>
-      <div className="detalle-imagen">
-        {artista.images[0] && (
+
+      {artista.images[0] && (
+        <div className="detalle-imagen">
           <img
             src={artista.images[0].url}
             alt={artista.name}
             className="imagen-principal"
           />
-        )}
-      </div>
+        </div>
+      )}
+
       <div className="detalle-info">
         <h1 className="nombre-principal">{artista.name}</h1>
-        <BotonFavorito
-          item={{
-            tipo: 'Artista',
+        {artista.genres.length > 0 && (
+          <p className="generos">
+            <strong>Géneros:</strong> {artista.genres.join(', ')}
+          </p>
+        )}
+        <p className="seguidores">
+          <strong>Seguidores:</strong> {artista.followers.total.toLocaleString()}
+        </p>
+        <p className="popularidad">
+          <strong>Popularidad:</strong> {artista.popularity}/100
+        </p>
+        <a
+          href={artista.external_urls.spotify}
+          target="_blank"
+          rel="noreferrer"
+          className="link-spotify"
+        >
+          Ver en Spotify
+        </a>
+        <button
+          className="boton-favorito"
+          onClick={() => onAgregarFavorito({
+            tipo: 'artista',
+            id: artista.id,
             nombre: artista.name,
-            url: artista.external_urls.spotify
-          }}
-          favoritos={favoritos}
-          agregarFavorito={agregarFavorito}
-          eliminarFavorito={eliminarFavorito}
-        />
+            imagen: artista.images[0]?.url || '',
+          })}
+        >
+          + Favorito
+        </button>
       </div>
+
       <h2 className="titulo-albumes">Álbumes</h2>
       <div className="albumes-scroll">
         {albumes.map((alb) => {
           const año = alb.release_date.split('-')[0];
           return (
             <div key={alb.id} className="tarjeta-album">
-              <BotonFavorito
-                item={{
-                  tipo: 'Álbum',
+              <div
+                style={{ cursor: 'pointer' }}
+                onClick={() => setAlbumSeleccionado(alb.id)}
+              >
+                {alb.images[0] && (
+                  <img
+                    src={alb.images[0].url}
+                    alt={alb.name}
+                    className="imagen-album"
+                  />
+                )}
+                <p className="nombre-album">{alb.name}</p>
+                <p className="año-album">{año}</p>
+              </div>
+              <button
+                className="boton-favorito"
+                onClick={() => onAgregarFavorito({
+                  tipo: 'album',
+                  id: alb.id,
                   nombre: alb.name,
-                  url: alb.external_urls.spotify
-                }}
-                favoritos={favoritos}
-                agregarFavorito={agregarFavorito}
-                eliminarFavorito={eliminarFavorito}
-              />
-              {alb.images[0] && (
-                <img
-                  src={alb.images[0].url}
-                  alt={alb.name}
-                  className="imagen-album"
-                />
-              )}
-              <p className="nombre-album">{alb.name}</p>
-              <p className="año-album">{año}</p>
+                  imagen: alb.images[0]?.url || '',
+                  año: año,
+                })}
+              >
+                + Favorito
+              </button>
             </div>
           );
         })}
@@ -117,3 +155,4 @@ export default function Artista({
   );
 }
 
+export default Artista;
