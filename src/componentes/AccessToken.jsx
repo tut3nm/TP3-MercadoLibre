@@ -1,4 +1,3 @@
-// src/Componentes/TokenSpotify.jsx
 import { useEffect, useState } from "react";
 import axios from "axios";
 
@@ -34,7 +33,7 @@ const TokenSpotify = ({ alRecibirToken }) => {
     obtenerToken();
   }, []);
 
-  return null; // No renderiza nada visible
+  return null;
 };
 
 export default TokenSpotify;

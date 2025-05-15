@@ -1,22 +1,49 @@
-
-.favoritos-container {
-  width: 300px;
-  padding: 20px;
-  background-color: #1f1f1f;      
-  border: 2px solid #17a94a;      
-  border-radius: 15px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+.toggle-fav-button {
+  position:absolute;
+  top: 16px;
+  right: 16px;
+  padding: 6px 12px;
+  background-color: #1db954;
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+  font-size: 12px;
+  cursor: pointer;
+  z-index: 20;
+  transition: background-color 0.2s ease;
 }
 
+.toggle-fav-button:hover {
+  background-color: #17a94a;
+}
+
+.favoritos-container {
+  position: absolute;
+  top: 48px;
+  right: 16px;
+  width: 280px;
+  max-height: 70vh;
+  overflow-y: auto;
+  background-color: #1f1f1f;
+  border: 2px solid #17a94a;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  z-index: 15;
+}
 
 .favoritos-container h2 {
-  margin-top: 0;
-  margin-bottom: 16px;
-  font-size: 20px;
+  margin: 0 0 12px;
   color: #1db954;
+  font-size: 18px;
   text-align: center;
 }
 
+.sin-fav {
+  text-align: center;
+  color: #ccc;
+  margin: 8px 0;
+}
 
 .favoritos-lista {
   list-style: none;
@@ -24,12 +51,11 @@
   margin: 0;
 }
 
-
 .favorito-item {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 8px 0;
+  justify-content: space-between;
+  padding: 6px 0;
   border-bottom: 1px solid #333;
 }
 
@@ -37,7 +63,7 @@
   border-bottom: none;
 }
 
-.favorito-item span {
+.tipo-fav {
   font-size: 12px;
   font-weight: bold;
   color: #ccc;
@@ -59,18 +85,15 @@
   color: #1db954;
 }
 
-
-.favorito-item button {
-  background-color: #b33a3a;
-  color: #fff;
+.boton-quitar-fav {
+  background: none;
   border: none;
-  border-radius: 12px;
-  padding: 4px 8px;
-  font-size: 12px;
+  color: #b33a3a;
+  font-size: 16px;
   cursor: pointer;
-  transition: background-color 0.2s ease;
+  transition: color 0.2s ease;
 }
 
-.favorito-item button:hover {
-  background-color: #9a2e2e;
+.boton-quitar-fav:hover {
+  color: #e74c3c;
 }

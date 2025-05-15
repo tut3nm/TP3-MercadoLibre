@@ -9,7 +9,10 @@ function Buscador({
   setArtista,
   resultados,
   setResultados,
-  onSelectArtist
+  onSelectArtist,
+  agregarFavorito,
+  favoritos, 
+  eliminarFavorito
 }) {
   const manejarBusqueda = async () => {
     if (!artista.trim()) return;
@@ -51,6 +54,9 @@ function Buscador({
           artistas={resultados}
           onSelectArtist={onSelectArtist}
           onBackMostrar={() => setResultados([])}
+          agregarFavorito={agregarFavorito}      
+          favoritos={favoritos}                   
+          eliminarFavorito={eliminarFavorito}     
         />
       )}
     </div>

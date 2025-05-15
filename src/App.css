@@ -1,6 +1,6 @@
 .App {
   display: flex;
-  justify-content: center;
+  justify-content:center;
   align-items: center;
   width: auto;
   min-height: 1080px;
@@ -8,11 +8,10 @@
 }
 
 .busqueda-y-favoritos {
-  display: flex;
+  display:flex;
   gap: 20px;
 }
 
-/* Ajustá el ancho a tu gusto */
 .busqueda-y-favoritos > .favoritos-container {
   width: 300px;
 }

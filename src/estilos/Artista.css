@@ -141,4 +141,11 @@
 .boton-favorito:hover {
   background-color: #17a94a;
 }
-    
+
+.boton-favorito.activo {
+  background-color: #b33a3a;
+}
+
+.boton-favorito.activo:hover {
+  background-color: #9a2e2e;  
+}

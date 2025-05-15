@@ -37,7 +37,9 @@ function App() {
             resultados={resultados}
             setResultados={setResultados}
             onSelectArtist={setArtistaSeleccionado}
-            agregarFavorito={agregarFavorito}      // <-- paso la función
+            agregarFavorito={agregarFavorito}
+            favoritos={favoritos}
+            eliminarFavorito={eliminarFavorito}
           />
           <Favoritos
             favoritos={favoritos}
@@ -52,7 +54,9 @@ function App() {
           token={token}
           id={artistaSeleccionado}
           onBack={() => setArtistaSeleccionado(null)}
-          agregarFavorito={agregarFavorito}       // <-- también aquí
+          agregarFavorito={agregarFavorito}
+          favoritos={favoritos}
+          eliminarFavorito={eliminarFavorito}
         />
       )}
     </div>
@@ -60,4 +64,3 @@ function App() {
 }
 
 export default App;
-
