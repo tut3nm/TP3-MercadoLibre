@@ -65,8 +65,12 @@ function Album({ token, idAlbum, onBack }) {
       <ul className="lista-pistas">
         {pistas.map(p => (
           <li key={p.id} className="pista-item">
-            <a href={p.external_urls.spotify}>
-              <span className="pista-nombre">{p.name}</span>
+            <a 
+              href={p.external_urls.spotify} 
+              className="pista-nombre" 
+              target="_blank" 
+              rel="noreferrer">
+              {p.name}
             </a>
             <span className="pista-duracion">
               {Math.floor(p.duration_ms/60000)}:
