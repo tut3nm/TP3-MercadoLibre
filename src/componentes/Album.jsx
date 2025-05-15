@@ -79,6 +79,17 @@ function Album({ token, idAlbum, onBack }) {
             <span className="pista-popularidad">
               Popularidad: {p.popularity ?? '-'}
             </span>
+            <button
+              className="boton-favorito"
+              onClick={() => onAgregarFavorito({
+              tipo: 'artista',
+              id: artista.id,
+              nombre: artista.name,
+              imagen: artista.images[0]?.url || '',
+              })}
+            >
+            + Favorito
+            </button>
           </li>
         ))}
       </ul>
